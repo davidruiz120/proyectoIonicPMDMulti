@@ -1,13 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Añadir vehículo
-    </ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="cancelar()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Editar vehículo</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form [formGroup]="garageForm" (ngSubmit)="addNote()">
+  <form [formGroup]="garageForm" (ngSubmit)="editNote()">
     <ion-item>
       <ion-label>Marca</ion-label>
       <ion-input type="text" formControlName="marca"></ion-input>
@@ -16,6 +19,6 @@
       <ion-label>Modelo</ion-label>
       <ion-textarea formControlName="modelo"></ion-textarea>
     </ion-item>
-    <ion-button shape="round" color="primary" fill="solid" type="submit" [disabled]="!this.garageForm.valid">Añadir</ion-button>
+    <ion-button shape="round" color="primary" fill="solid" type="submit">Editar</ion-button>
   </form>
 </ion-content>

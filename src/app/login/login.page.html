@@ -1,11 +1,17 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
+  
 </ion-header>
 
 <ion-content>
 
-  <ion-button (click)="loginGoogle()">LOGIN</ion-button>
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 50%">
+      <h1>Project Garage</h1>
+    </ion-row>
+    <ion-row justify-content-center align-items-center style="height: 10%">
+      <ion-button (click)="loginGoogle()"><ion-icon name="logo-google"></ion-icon>&nbsp; INICIAR SESIÓN CON GOOGLE</ion-button>
+    </ion-row>
+    
+  </ion-grid>
 
 </ion-content>
