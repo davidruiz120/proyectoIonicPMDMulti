@@ -3,7 +3,7 @@
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://localhost:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -102,5 +102,4 @@
     <plugin name="cordova-plugin-googleplus" spec="^8.2.1">
         <variable name="WEB_APPLICATION_CLIENT_ID" value="1027386140720-l3v883957er45aph46gkk0nbg6q5nfp4.apps.googleusercontent.com" />
     </plugin>
-    <allow-navigation href="http://localhost:8100" sessionid="d6e51358" />
 </widget>

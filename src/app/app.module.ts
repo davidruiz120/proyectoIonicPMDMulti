@@ -1,3 +1,4 @@
+import { PipesModule } from './pipes/pipes.module';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -27,7 +28,8 @@ import { UiComponent } from './common/ui/ui.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule
   ],
   providers: [
     GooglePlus,

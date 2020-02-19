@@ -32,7 +32,7 @@ export class Tab1Page {
   }
 
   public buscar(e){
-    //console.log(e);
+    console.log(e);
     this.textoaBuscar = e.detail.value; // Obtengo el valor del SeachBar
   }
 
@@ -63,13 +63,13 @@ export class Tab1Page {
     })
   }
 
-  async modalEditar(id_modal:string, data_title:string, data_description:string){
+  async modalEditar(id_modal:string, data_marca:string, data_modelo:string){
     const modal = await this.modalController.create({
       component: ModaleditarPage,
       componentProps: {
         id: id_modal,
-        title: data_title,
-        description: data_description
+        marca: data_marca,
+        modelo: data_modelo
       }
     });
     await modal.present();
