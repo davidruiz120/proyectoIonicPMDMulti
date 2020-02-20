@@ -1,3 +1,4 @@
+import { MenuComponent } from './../common/menu/menu.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +15,9 @@ import { TabsPage } from './tabs.page';
     FormsModule,
     TabsPageRoutingModule
   ],
-  declarations: [TabsPage]
+  providers: [
+    MenuComponent
+  ],
+  declarations: [TabsPage, MenuComponent]
 })
 export class TabsPageModule {}

@@ -1,0 +1,39 @@
+<ion-menu side="start" menuId="menuPrincipal" contentId="principal" class="my-custom-menu">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Project Garage</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+
+    <ion-item>
+      <ion-label>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-avatar>
+                <img [src]="this.auth.user.imageUrl">
+              </ion-avatar>
+            </ion-col>
+            <ion-col class="ion-align-items-start">
+              <h2>{{this.auth.user.displayName}}</h2>
+            <h4>{{this.auth.user.email}}</h4>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-label>
+    </ion-item>
+
+    <ion-menu-toggle>
+      <ion-list>
+        <ion-button ion-item (click)="this.logout()">
+          <ion-icon name="exit"></ion-icon>&nbsp; Cerrar sesión
+        </ion-button>
+      </ion-list>
+    </ion-menu-toggle>
+    
+  </ion-content>
+</ion-menu>
+

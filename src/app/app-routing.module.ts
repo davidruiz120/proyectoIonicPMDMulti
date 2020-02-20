@@ -15,10 +15,6 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: ''
-  },
-  {
-    path: 'modaleditar',
-    loadChildren: () => import('./modal/modaleditar/modaleditar.module').then( m => m.ModaleditarPageModule)
   }
 ];
 @NgModule({

@@ -1,3 +1,4 @@
+import { MenuComponent } from './common/menu/menu.component';
 import { PipesModule } from './pipes/pipes.module';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AuthService } from './services/auth.service';
@@ -39,6 +40,7 @@ import { UiComponent } from './common/ui/ui.component';
     StatusBar,
     SplashScreen,
     UiComponent,
+    MenuComponent,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
