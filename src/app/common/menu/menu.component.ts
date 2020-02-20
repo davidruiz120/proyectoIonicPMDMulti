@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -8,13 +9,36 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
+  constructor(public auth: AuthService, public alertController: AlertController) { }
 
   ngOnInit() {}
 
   public logout(){
-    console.log("Pulsado Cerrar sesión en el menú principal")
     this.auth.logout();
+  }
+
+  async presentAlertCerrarSesion() {
+    const alert = await this.alertController.create({
+      header: 'Cerrar sesión',
+      message: '¿Desea cerrar la sesión? Para volver a usar la aplicación se requerirá un inicio de sesión.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Cancelado');
+          }
+        }, {
+          text: 'Cerrar sesión',
+          handler: () => {
+            console.log('Aceptado');
+            this.logout();
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
 }
