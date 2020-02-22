@@ -54,23 +54,26 @@ export class Tab1Page {
     let id_modal;
     let data_marca;
     let data_modelo;
+    let data_imagen;
     this.garageService.readGARAGEByID(id).subscribe((vehiculo)=>{
       id_modal = vehiculo.id;
       data_marca = vehiculo.data().marca;
       data_modelo = vehiculo.data().modelo;
+      data_imagen = vehiculo.data().imagen;
       //console.log("Tab2 ID: " + nota.id);
       //console.log("Tab2 title: " + data_title + " description: " + data_description);
-      this.modalEditar(id_modal, data_marca, data_modelo);
+      this.modalEditar(id_modal, data_marca, data_modelo, data_imagen);
     })
   }
 
-  async modalEditar(id_modal:string, data_marca:string, data_modelo:string){
+  async modalEditar(id_modal:string, data_marca:string, data_modelo:string, data_imagen:string){
     const modal = await this.modalController.create({
       component: ModaleditarPage,
       componentProps: {
         id: id_modal,
         marca: data_marca,
-        modelo: data_modelo
+        modelo: data_modelo,
+        imagen: data_imagen
       }
     });
     await modal.present();
@@ -79,7 +82,8 @@ export class Tab1Page {
       let dataEdit:Vehiculo;
       dataEdit = {
         marca:salida.data.marca,
-        modelo:salida.data.modelo
+        modelo:salida.data.modelo,
+        imagen:salida.data.imagen
       }
       this.ui.presentLoading();
       this.garageService.updateGARAGE(salida.data.id, dataEdit).then((ok)=>{
@@ -88,7 +92,7 @@ export class Tab1Page {
         console.log(error);
         this.ui.presentToast("Error al actualizar el vehículo", this.icon_info, 'success');
       }).finally(()=>{
-        this.ui.hideLoading();
+        //this.ui.hideLoading();
         this.refrescar();
       })
 

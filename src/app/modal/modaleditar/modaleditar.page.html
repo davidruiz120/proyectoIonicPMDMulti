@@ -19,6 +19,22 @@
       <ion-label>Modelo</ion-label>
       <ion-textarea formControlName="modelo"></ion-textarea>
     </ion-item>
+
+    <ion-list>
+      <ion-row>
+        <p>Imagen</p>
+      </ion-row>
+      <ion-row>
+        <img *ngIf="this.imagen" [src]="this.imagen" alt="imagenVehiculo" width="200">
+      </ion-row>
+      <ion-button ion-item (click)="this.takePicture()">
+        <ion-icon name="camera"></ion-icon>&nbsp; Sacar cámara
+      </ion-button>
+      <ion-button ion-item (click)="this.eliminarImagen()">
+        Eliminar imagen
+      </ion-button>
+    </ion-list>
+
     <ion-button shape="round" color="primary" fill="solid" type="submit">Editar</ion-button>
   </form>
 </ion-content>
