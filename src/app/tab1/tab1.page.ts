@@ -17,6 +17,7 @@ export class Tab1Page {
   public listadoPanel;
   public listado$; // El $ indica que es un observable por los programadores
   public textoaBuscar:string = '';
+  public tieneImagen: boolean;
   public icon_confirm:string = '<ion-icon name="checkmark"></ion-icon>';
   public icon_info:string = '<ion-icon name="information-circle"></ion-icon>';
 
@@ -122,6 +123,11 @@ export class Tab1Page {
         this.listadoPanel.push({id:vehiculo.id,...vehiculo.data()}); // Concatena dos cosas para unirlas en una
         console.log(vehiculo.id);
         console.log(vehiculo.data());
+        if(this.listadoPanel.find(i => i.id === vehiculo.id).imagen){
+          this.tieneImagen = true;
+        } else {
+          this.tieneImagen = false;
+        }
       });
     })
     e.target.complete();

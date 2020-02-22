@@ -20,6 +20,8 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from 'src/environments/environment';
 import { UiComponent } from './common/ui/ui.component';
 
+import { Camera } from '@ionic-native/camera/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -41,6 +43,7 @@ import { UiComponent } from './common/ui/ui.component';
     SplashScreen,
     UiComponent,
     MenuComponent,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

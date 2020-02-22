@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form [formGroup]="garageForm" (ngSubmit)="addNote()">
+  <form [formGroup]="garageForm" (ngSubmit)="addVehiculo()">
     <ion-item>
       <ion-label>Marca</ion-label>
       <ion-input type="text" formControlName="marca"></ion-input>
@@ -21,6 +21,22 @@
       <ion-label>Modelo</ion-label>
       <ion-textarea formControlName="modelo"></ion-textarea>
     </ion-item>
+
+    <ion-list>
+      <ion-row>
+        <p>Imagen</p>
+      </ion-row>
+      <ion-row>
+        <img *ngIf="this.imagenVehiculo" [src]="this.imagenVehiculo" alt="imagenVehiculo" width="200">
+      </ion-row>
+      <ion-button ion-item (click)="this.takePicture()">
+        <ion-icon name="camera"></ion-icon>&nbsp; Sacar cámara
+      </ion-button>
+      <ion-button ion-item (click)="this.eliminarImagen()">
+        Eliminar imagen
+      </ion-button>
+    </ion-list>
+
     <ion-button shape="round" color="primary" fill="solid" type="submit" [disabled]="!this.garageForm.valid"><ion-icon name="add"></ion-icon>&nbsp; Añadir</ion-button>
   </form>
 </ion-content>

@@ -102,5 +102,5 @@
     <plugin name="cordova-plugin-googleplus" spec="^8.2.1">
         <variable name="WEB_APPLICATION_CLIENT_ID" value="1027386140720-l3v883957er45aph46gkk0nbg6q5nfp4.apps.googleusercontent.com" />
     </plugin>
-    <allow-navigation href="http://localhost:8100" sessionid="f931c4b3" />
+    <allow-navigation href="http://localhost:8100" sessionid="567f3ba1" />
 </widget>

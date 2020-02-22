@@ -1,4 +1,5 @@
 export interface Vehiculo{
     marca: string,
-    modelo: string
+    modelo: string,
+    imagen?: string
 }
