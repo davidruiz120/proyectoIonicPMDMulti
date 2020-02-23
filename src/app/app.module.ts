@@ -21,6 +21,7 @@ import { environment } from 'src/environments/environment';
 import { UiComponent } from './common/ui/ui.component';
 
 import { Camera } from '@ionic-native/camera/ngx';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,6 +45,7 @@ import { Camera } from '@ionic-native/camera/ngx';
     UiComponent,
     MenuComponent,
     Camera,
+    NativeAudio,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
