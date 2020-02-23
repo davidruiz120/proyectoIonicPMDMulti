@@ -32,7 +32,8 @@ export class UiComponent implements OnInit {
     const toast = await this.toastController.create({
       message: icn + ' ' + msg,
       duration: dur,
-      color: col
+      color: col,
+      position: 'top'
     });
     toast.present();
   }

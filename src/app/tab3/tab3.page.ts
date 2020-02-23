@@ -40,6 +40,9 @@ export class Tab3Page {
   }
 
 
+  activarToast(){
+    this.ui.presentToast("Toast con animación de Ionic", "", "");
+  }
 
 
 

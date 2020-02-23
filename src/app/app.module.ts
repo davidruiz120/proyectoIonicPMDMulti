@@ -22,12 +22,15 @@ import { UiComponent } from './common/ui/ui.component';
 
 import { Camera } from '@ionic-native/camera/ngx';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { toastAnimado } from './toastAnimado';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot({
+      toastEnter: toastAnimado
+    }), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
