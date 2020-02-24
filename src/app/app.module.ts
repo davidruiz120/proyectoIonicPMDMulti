@@ -24,6 +24,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { toastAnimado } from './toastAnimado';
 import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,6 +52,7 @@ import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
     Camera,
     NativeAudio,
     StreamingMedia,
+    SpeechRecognition,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

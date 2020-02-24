@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { UiComponent } from './../common/ui/ui.component';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
+import { Platform } from '@ionic/angular';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-tab3',
@@ -10,7 +13,11 @@ import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-m
 })
 export class Tab3Page {
 
-  constructor(private nativeAudio: NativeAudio, public ui: UiComponent, private stream: StreamingMedia) {}
+  textoReconocido: String[];
+  isRecording = false;
+
+  constructor(private nativeAudio: NativeAudio, public ui: UiComponent, private stream: StreamingMedia,
+          private plt: Platform, private speech: SpeechRecognition, private cd: ChangeDetectorRef) {}
 
   ngOnInit(){
     this.animacionCSS3();
@@ -48,7 +55,7 @@ export class Tab3Page {
 
 
 
-  // ====================================
+  // =========== Streaming Video ==============
   startVideo(){
     let options: StreamingVideoOptions = {
       successCallback: () => { console.log() },
@@ -56,6 +63,40 @@ export class Tab3Page {
       orientation: 'portrait'
     }
     this.stream.playVideo('http://techslides.com/demos/sample-videos/small.mp4', options);
+  }
+
+
+
+  // =========== Reconocimiento de voz || Micrófono =============
+  isIos() {
+    return this.plt.is('ios');
+  }
+
+  getPermiso(){
+    this.speech.hasPermission()
+    .then((hasPermission: boolean) =>{
+      if(!hasPermission){
+        this.speech.requestPermission();
+      }
+    })
+  }
+
+  startListening(){
+    let options = {
+      language: 'es-ES'
+    }
+    this.speech.startListening().subscribe(matches => {
+      this.textoReconocido = matches;
+      this.cd.detectChanges();
+    });
+    this.isRecording = true;
+  }
+
+  stopListening(){
+    this.speech.stopListening()
+    .then(() =>{
+      this.isRecording = false;
+    })
   }
 
 

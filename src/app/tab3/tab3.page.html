@@ -41,6 +41,31 @@
       <ion-button (click)="this.startVideo()">Abrir vídeo</ion-button>
     </ion-row>
   </ion-grid>
+
+  <ion-item class="ion-margin-top">
+    <ion-label>Micrófono</ion-label>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-button (click)="this.getPermiso()">Obtener permiso</ion-button>
+      <ion-button (click)="this.startListening()">Grabar</ion-button>
+      <ion-button (click)="this.stopListening()" *ngIf="this.isIos()">Para de grabar</ion-button>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card>
+    <ion-card-header>
+      Lista de lo que se ha reconocido
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let texto of textoReconocido">
+          {{ texto }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
   
 
 </ion-content>
