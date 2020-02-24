@@ -13,10 +13,20 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * Función que llama al método de 'logout' del servicio de autencificación.
+   * Dicho método realizará lo necesario para eliminar la sesión en el sistema y 
+   * redirigir la ruta actual
+   */
   public logout(){
     this.auth.logout();
   }
 
+  /**
+   * Función que muestra un 'Alert' para dar la confirmación al usuario de la posibilidad
+   * de cerrar la sesión. Si no confirma, no se realizará ninguna acción, si se confirma, 
+   * llamará a la función 'logout'
+   */
   async presentAlertCerrarSesion() {
     const alert = await this.alertController.create({
       header: 'Cerrar sesión',

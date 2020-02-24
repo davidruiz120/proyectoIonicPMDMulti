@@ -13,6 +13,13 @@ export class AuthService {
 
   constructor(private local: NativeStorage, private google: GooglePlus, private router: Router) { }
 
+  /**
+   * Función que comprobará la sesión.
+   * 
+   * Si la variable del usuario no está inicializada, se intentará
+   * recoger el usuario del almacenamiento local. Si no, la variable
+   * 'user' se establecerá a 'null'
+   */
   public async checkSession(): Promise<void>{
     if(!this.user){
       try{
@@ -41,6 +48,10 @@ export class AuthService {
     }
   }
 
+  /**
+   * Función que se encarga de hacer 'login' con los 
+   * servicios de Google
+   */
   public loginGoogle(): Promise<boolean>{
     return new Promise((resolve, reject)=>{
       this.google.login({})
@@ -67,6 +78,10 @@ export class AuthService {
     });
   }
 
+  /**
+   * Función que se encarga de cerrar sesión desde los
+   * servicios de Google. Además borrará la cookie de la sesión
+   */
   public async logout(){
     await this.google.logout();
     this.user = null;

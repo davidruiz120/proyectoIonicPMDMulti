@@ -1,6 +1,12 @@
+<!-- Estructura visual del modal al editar un registro -->
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="secondary">
+
+      <!-- Muestro un icono en la parte superior derecha del modal
+      en el que si se hace click, se ejecutará la función 'cancelar' 
+      que se encarga de cerrar el modal sin modificaciones en el registro -->
       <ion-button (click)="cancelar()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
@@ -10,7 +16,9 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form [formGroup]="garageForm" (ngSubmit)="editNote()">
+
+  <!-- Formulario que brinda la posibilidad de editar el registro -->
+  <form [formGroup]="garageForm" (ngSubmit)="editVehiculo()">
     <ion-item>
       <ion-label>Marca</ion-label>
       <ion-input type="text" formControlName="marca"></ion-input>
@@ -25,16 +33,21 @@
         <p>Imagen</p>
       </ion-row>
       <ion-row>
+        <!-- Únicamente se mostrará la imagen si la misma existe -->
         <img *ngIf="this.imagen" [src]="this.imagen" alt="imagenVehiculo" width="200">
       </ion-row>
+      <!-- Botón que llama a la función 'takePicture' en el que se abrirá la
+      cámara para realizar la captura -->
       <ion-button ion-item (click)="this.takePicture()">
         <ion-icon name="camera"></ion-icon>&nbsp; Sacar cámara
       </ion-button>
+      <!-- Botón que llamará a la función 'eliminarImagen' en el que, como su
+      nombre indica, borrará la imagen -->
       <ion-button ion-item (click)="this.eliminarImagen()">
         Eliminar imagen
       </ion-button>
     </ion-list>
 
-    <ion-button shape="round" color="primary" fill="solid" type="submit">Editar</ion-button>
+    <ion-button shape="round" color="primary" fill="solid" type="submit" [disabled]="!this.garageForm.valid">Editar</ion-button>
   </form>
 </ion-content>
