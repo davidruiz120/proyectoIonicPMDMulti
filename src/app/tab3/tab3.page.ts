@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UiComponent } from './../common/ui/ui.component';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 
 @Component({
   selector: 'app-tab3',
@@ -9,7 +10,7 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
 })
 export class Tab3Page {
 
-  constructor(private nativeAudio: NativeAudio, public ui: UiComponent) {}
+  constructor(private nativeAudio: NativeAudio, public ui: UiComponent, private stream: StreamingMedia) {}
 
   ngOnInit(){
     this.animacionCSS3();
@@ -44,6 +45,18 @@ export class Tab3Page {
     this.ui.presentToast("Toast con animación de Ionic", "", "");
   }
 
+
+
+
+  // ====================================
+  startVideo(){
+    let options: StreamingVideoOptions = {
+      successCallback: () => { console.log() },
+      errorCallback: () => { console.log() },
+      orientation: 'portrait'
+    }
+    this.stream.playVideo('http://techslides.com/demos/sample-videos/small.mp4', options);
+  }
 
 
 

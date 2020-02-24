@@ -23,6 +23,7 @@ import { UiComponent } from './common/ui/ui.component';
 import { Camera } from '@ionic-native/camera/ngx';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { toastAnimado } from './toastAnimado';
+import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,6 +50,7 @@ import { toastAnimado } from './toastAnimado';
     MenuComponent,
     Camera,
     NativeAudio,
+    StreamingMedia,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
