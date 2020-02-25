@@ -19,11 +19,18 @@ export class Tab3Page {
   constructor(private nativeAudio: NativeAudio, public ui: UiComponent, private stream: StreamingMedia,
           private plt: Platform, private speech: SpeechRecognition, private cd: ChangeDetectorRef) {}
 
+  /**
+   * Al iniciar la página, se iniciará la animación CSS3
+   */
   ngOnInit(){
     this.animacionCSS3();
   }
 
-  ionViewWillEnter(){
+  /**
+   * Cuando se entre en la página, se cargará en memoria
+   * el sonido en una variable
+   */
+  ionViewWillEnter():void{
     this.nativeAudio.preloadSimple('sound1', 'assets/audio/sound1.mp3')
     .catch((err)=>{
       this.ui.presentToast('Error - No se ha podido precargar el audio', '', 'danger');
@@ -31,7 +38,10 @@ export class Tab3Page {
     });
   }
 
-  reproducir(){
+  /**
+   * Función que se encarga de reproducir el audio precargado
+   */
+  reproducir():void{
     this.nativeAudio.play('sound1')
     .catch((err)=>{
       this.ui.presentToast('Error - No se ha podido reproducir el audio', '', 'danger');
@@ -39,7 +49,11 @@ export class Tab3Page {
     })
   }
 
-  ionViewWillLeave(){
+  /**
+   * Cuando el usario deje la página, se descargará el archivo
+   * para no saturar la memoria
+   */
+  ionViewWillLeave():void{
    this.nativeAudio.unload('sound1')
    .catch((err)=>{
     this.ui.presentToast('No se ha podido descargar el audio', '', 'danger');
@@ -47,32 +61,38 @@ export class Tab3Page {
    })
   }
 
-
-  activarToast(){
+  /**
+   * Función simple que muestra un Toast de ejemplo
+   */
+  activarToast():void{
     this.ui.presentToast("Toast con animación de Ionic", "", "");
   }
 
-
-
-
-  // =========== Streaming Video ==============
-  startVideo(){
+  /**
+   * Función que reproduce un stream de vídeo estableciendo
+   * previamente ciertas opciones  
+   */
+  startVideo():void{
     let options: StreamingVideoOptions = {
       successCallback: () => { console.log() },
-      errorCallback: () => { console.log() },
+      errorCallback: () => { console.log(); this.ui.presentToast("Error al intentar reproducir el vídeo", "", "danger") },
       orientation: 'portrait'
     }
     this.stream.playVideo('http://techslides.com/demos/sample-videos/small.mp4', options);
   }
 
-
-
-  // =========== Reconocimiento de voz || Micrófono =============
-  isIos() {
+  /**
+   * Función que comprueba si la plataforma actual
+   * es iOS
+   */
+  isIos():boolean {
     return this.plt.is('ios');
   }
 
-  getPermiso(){
+  /**
+   * Función que hace una petición de permiso hacia el usuario
+   */
+  getPermiso():void{
     this.speech.hasPermission()
     .then((hasPermission: boolean) =>{
       if(!hasPermission){
@@ -81,7 +101,12 @@ export class Tab3Page {
     })
   }
 
-  startListening(){
+  /**
+   * Función que se encarga de 'escuchar' la entrada
+   * del micrófono y lo interpreta. Dicha interpretación se 
+   * guarda en un array 'textoReconocido'
+   */
+  startListening():void{
     let options = {
       language: 'es-ES'
     }
@@ -92,19 +117,23 @@ export class Tab3Page {
     this.isRecording = true;
   }
 
-  stopListening(){
+  /**
+   * Función que se encarga manualmente de parar
+   * de 'escuchar' el micrófono. Dicho método solo se usa
+   * si la plataforma acutal es iOS
+   */
+  stopListening():void{
     this.speech.stopListening()
     .then(() =>{
       this.isRecording = false;
     })
   }
 
-
-
-
-  // ================= Animación CSS3 ===============
-  // https://codepen.io/nourabusoud/pen/ypZzMM
-  animacionCSS3(){
+  /**
+   * Función que se encarga de establecer la 
+   * animación CSS3 al botón en concreto de la vista
+   */
+  animacionCSS3():void{
     var animateButton = function(e) {
       e.preventDefault;
       e.target.classList.remove('animate');

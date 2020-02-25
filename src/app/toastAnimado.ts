@@ -1,5 +1,15 @@
 import { Animation } from '@ionic/core';
 
+/**
+ * Función que se encarga de animar el Toast, en mi caso, el Toast
+ * se abrirá algo más lento. 
+ * 
+ * Dicha animación es proveniente directamente de la documentación de Ionic
+ * 
+ * @param AnimationC 
+ * @param baseEl 
+ * @param position 
+ */
 export function toastAnimado(
     AnimationC: Animation,
     baseEl: ShadowRoot,

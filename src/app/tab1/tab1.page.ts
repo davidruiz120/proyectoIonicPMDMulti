@@ -32,12 +32,24 @@ export class Tab1Page {
     //this.refrescar();
   }
 
-  public buscar(e){
+  /**
+   * Función que establezco el texto a buscar con el texto del SearchBar
+   * 
+   * @param e Evento que detecta ionChange
+   */
+  public buscar(e):void{
     console.log(e);
     this.textoaBuscar = e.detail.value; // Obtengo el valor del SeachBar
   }
 
-  public borrarVehiculo(id:string){
+  /**
+   * Función que se encarga de borrar el registro/vehículo, usando 
+   * el servicio para realizar el proceso con Firebase y mostrando un
+   * Toast con el resultado final
+   * 
+   * @param id El identificador del vehículo
+   */
+  public borrarVehiculo(id:string):void{
     console.log("Borrando...");
     this.garageService.deleteGARAGE(id).then((salida)=>{
       this.refrescar();
@@ -49,8 +61,14 @@ export class Tab1Page {
     });
   }
 
-
-  public editarVehiculo(id:string){
+  /**
+   * Función que se encarga de recoger los datos del registro según el 
+   * identificador, guardarlos en una variable individualmente y enviarlo
+   * a un método que se encarga de enviar dichos datos al modal
+   * 
+   * @param id El identificador del vehículo
+   */
+  public editarVehiculo(id:string):void{
     let id_modal;
     let data_marca;
     let data_modelo;
@@ -66,6 +84,20 @@ export class Tab1Page {
     })
   }
 
+  /**
+   * Función que se encarga de abrir el modal que se encargará del formulario
+   * y previamente enviar esos datos al modal.
+   * 
+   * Después cuando el modal se cierre se creará un objeto con los datos
+   * (modificados o no) y se usará el servicio encargado de actualizar los datos
+   * con el objeto y el identificador del registro. Todo esto, mostrando feedback
+   * como un Loading o un Toast informando en pantalla la información al usuario
+   * 
+   * @param id_modal El identificador del vehículo
+   * @param data_marca Atributo Marca de la entidad Vehículo
+   * @param data_modelo Atributo Modelo de la entidad Vehículo
+   * @param data_imagen Atributo Imagen de la entidad Vehículo
+   */
   async modalEditar(id_modal:string, data_marca:string, data_modelo:string, data_imagen:string){
     const modal = await this.modalController.create({
       component: ModaleditarPage,
@@ -103,7 +135,11 @@ export class Tab1Page {
   }
 
 
-
+  /**
+   * Función que se encarga de refrescar la pantalla haciendo que se 
+   * muestre un Loading y se actualice el array del listado usando el 
+   * servicio para recoger los registros
+   */
   private async refrescar(){
     await this.ui.presentLoading();
     try {
@@ -118,6 +154,12 @@ export class Tab1Page {
     }
   }
 
+  /**
+   * Función que se encarga de actualizar la vista y el listado
+   * al realizarse el evento de ionRefresh
+   * 
+   * @param e Variable que recoge el evento ionRefresh
+   */
   public doRefresh(e:any){
     this.listadoPanel=[];
     let Myobservable = this.garageService.readGARAGE();
@@ -137,10 +179,20 @@ export class Tab1Page {
     e.target.complete();
   }
 
+  /**
+   * Función simple que se encarga de redirigir a 
+   * la página 'tabs/tab2'
+   */
   public irNueva():void{
     this.router.navigateByUrl('/tabs/tab2');
   }
 
+  /**
+   * Función que se encarga de mostrar un mensaje de confirmación
+   * al usuario para confirmar la eliminación del vehículo
+   * 
+   * @param id El identificador del vehículo
+   */
   async presentAlertConfirmBorrar(id:string) {
     const alert = await this.alertController.create({
       header: 'Borrar',
@@ -163,10 +215,6 @@ export class Tab1Page {
       ]
     });
     await alert.present();
-  }
-
-  public logout(){
-    this.auth.logout();
   }
 
 }

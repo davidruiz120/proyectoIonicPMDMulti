@@ -1,6 +1,9 @@
+<!-- Estructura visual de tab2, que se encarga de añadir un vehículo -->
+
 <ion-header>
   <ion-toolbar>
 
+    <!-- Botón para el menú lateral -->
     <ion-buttons slot="start">
       <ion-menu-button color="primary" menu="menuPrincipal"></ion-menu-button>
     </ion-buttons>
@@ -12,6 +15,8 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+
+  <!-- Formulario que brinda la posibilidad de añadir el registro -->
   <form [formGroup]="garageForm" (ngSubmit)="addVehiculo()">
     <ion-item>
       <ion-label>Marca</ion-label>
@@ -27,11 +32,16 @@
         <p>Imagen</p>
       </ion-row>
       <ion-row>
+        <!-- Únicamente se mostrará la imagen si la misma existe -->
         <img *ngIf="this.imagenVehiculo" [src]="this.imagenVehiculo" alt="imagenVehiculo" width="200">
       </ion-row>
+      <!-- Botón que llama a la función 'takePicture' en el que se abrirá la
+      cámara para realizar la captura -->
       <ion-button ion-item (click)="this.takePicture()">
         <ion-icon name="camera"></ion-icon>&nbsp; Sacar cámara
       </ion-button>
+      <!-- Botón que llamará a la función 'eliminarImagen' en el que, como su
+      nombre indica, borrará la imagen -->
       <ion-button ion-item (click)="this.eliminarImagen()">
         Eliminar imagen
       </ion-button>

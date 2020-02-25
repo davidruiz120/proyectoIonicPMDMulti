@@ -31,7 +31,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
   entryComponents: [],
   imports: [BrowserModule, 
     IonicModule.forRoot({
-      toastEnter: toastAnimado
+      toastEnter: toastAnimado // Aquí aplico el la función 'toastAnimado' del archivo toasAnimado.ts que se encarga de animar el Toast
     }), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

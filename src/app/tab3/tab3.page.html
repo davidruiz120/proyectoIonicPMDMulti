@@ -1,6 +1,9 @@
+<!-- Estructura visual de tab3, que se encarga de visualizar varios recursos nativos -->
+
 <ion-header>
   <ion-toolbar>
 
+    <!-- Botón para el menú lateral -->
     <ion-buttons slot="start">
       <ion-menu-button color="primary" menu="menuPrincipal"></ion-menu-button>
     </ion-buttons>
@@ -18,6 +21,7 @@
       <h5>Recurso de audio</h5>
     </ion-row>
     <ion-row>
+      <!-- Botón que llama a un método encargado de reproducir un sonido. Dicho botón tendrá una animación CSS3 -->
       <ion-button (click)="this.reproducir()" class="bubbly-button"><ion-icon name="musical-notes"></ion-icon>&nbsp; Reproducir sonido</ion-button>
     </ion-row>
   </ion-grid>
@@ -28,6 +32,9 @@
 
   <ion-grid>
     <ion-row>
+      <!-- Botón simple que mostrará un Toas de ejemplo. Pero en 
+      este proyecto, está implementado una animación de Ionic general para los Toast,
+      por lo que este botón es una vía rápida para probar dicha animación -->
       <ion-button (click)="this.activarToast()">Activar Toast</ion-button>
     </ion-row>
   </ion-grid>
@@ -38,6 +45,7 @@
 
   <ion-grid>
     <ion-row>
+      <!-- Botón que mostrará un streaming de vídeo -->
       <ion-button (click)="this.startVideo()">Abrir vídeo</ion-button>
     </ion-row>
   </ion-grid>
@@ -48,9 +56,11 @@
 
   <ion-grid>
     <ion-row>
+      <!-- Botón para permitir a la app permisos del micrófono -->
       <ion-button (click)="this.getPermiso()">Obtener permiso</ion-button>
+      <!-- Botones para iniciar la grabación (para parar si es en iOS) -->
       <ion-button (click)="this.startListening()">Grabar</ion-button>
-      <ion-button (click)="this.stopListening()" *ngIf="this.isIos()">Para de grabar</ion-button>
+      <ion-button (click)="this.stopListening()" *ngIf="this.isIos()">Parar de grabar</ion-button>
     </ion-row>
   </ion-grid>
 
@@ -60,6 +70,8 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
+        <!-- Después de que se haya grabado el micrófono, muestro en
+        en pantalla el array del texto que se ha entendido -->
         <ion-item *ngFor="let texto of textoReconocido">
           {{ texto }}
         </ion-item>

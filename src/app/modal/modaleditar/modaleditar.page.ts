@@ -42,7 +42,7 @@ export class ModaleditarPage implements OnInit {
    * Función que se encarga de configurar y abrir la cámara,
    * capturar la imagen y guardarla en una variable
    */
-  takePicture() {
+  takePicture():void {
     const options: CameraOptions = {
       quality: 75,
       destinationType: this.camara.DestinationType.DATA_URL,
@@ -65,7 +65,7 @@ export class ModaleditarPage implements OnInit {
    * Función que se encarga de borrar la imagen si
    * la mima existe
    */
-  eliminarImagen(){
+  eliminarImagen():void{
     if(this.imagen){
       this.imagen = "";
     }
@@ -75,7 +75,7 @@ export class ModaleditarPage implements OnInit {
    * Función que se encarga de cerrar el modal, pero con la diferencia
    * de que enviará los datos que se han modificado, al menos alguno de ellos
    */
-  editVehiculo(){
+  editVehiculo():void{
     this.modalController.dismiss({
       id: this.id,
       marca: this.garageForm.get('marca').value,
@@ -87,7 +87,7 @@ export class ModaleditarPage implements OnInit {
   /**
    * Función que se encarga de cerrar el modal sin enviar ninguna información
    */
-  cancelar(){
+  cancelar():void{
     this.modalController.dismiss();
   }
 

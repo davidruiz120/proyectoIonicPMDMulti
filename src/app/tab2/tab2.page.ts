@@ -20,6 +20,10 @@ export class Tab2Page {
   constructor(private formBuilder: FormBuilder, private camara: Camera, private garageService: GarageService, 
             public ui: UiComponent) {}
 
+  /**
+   * Se iniciará el formulario con el 'formBuilder' y se 
+   * aplicará las validaciones con 'Validators'
+   */
   ngOnInit(){
     this.garageForm = this.formBuilder.group({
       marca:['', Validators.required],
@@ -27,6 +31,10 @@ export class Tab2Page {
     });
   }
 
+  /**
+   * Función que se encarga de configurar y abrir la cámara,
+   * capturar la imagen y guardarla en una variable
+   */
   takePicture() {
     const options: CameraOptions = {
       quality: 75,
@@ -46,12 +54,23 @@ export class Tab2Page {
     })
   }
 
+  /**
+   * Función que se encarga de borrar la imagen si
+   * la mima existe
+   */
   eliminarImagen(){
     if(this.imagenVehiculo){
       this.imagenVehiculo = "";
     }
   }
 
+  /**
+   * Función que se encarga de agregar el registro en Firebase. 
+   * Creando un objeto, mostrando un Loading y usando el servicio
+   * que se encarga de llevar e insertar el objeto. Cualquier
+   * resultado mostrará un Toast con información al usuario y 
+   * cerrará el Loading
+   */
   addVehiculo(){
     let data:Vehiculo;
     data = {

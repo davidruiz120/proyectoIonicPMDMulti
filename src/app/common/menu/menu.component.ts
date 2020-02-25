@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
    * Dicho método realizará lo necesario para eliminar la sesión en el sistema y 
    * redirigir la ruta actual
    */
-  public logout(){
+  public logout():void{
     this.auth.logout();
   }
 

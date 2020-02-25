@@ -1,6 +1,9 @@
+ <!-- Estructura visual de la página de Tabs1 / Vehículos (lista) -->
+
 <ion-header no-border>
   <ion-toolbar>
 
+    <!-- Botón para el menú lateral -->
     <ion-buttons slot="start">
       <ion-menu-button color="primary" menu="menuPrincipal"></ion-menu-button>
     </ion-buttons>
@@ -9,11 +12,13 @@
       Vehículos
     </ion-title>
   </ion-toolbar>
+  <!-- El SeachBar, que recogerá los datos de búsqueda con el evento 'ionChange' -->
   <ion-searchbar showCancelButton="focus" placeholder="Buscar por modelo" (ionChange)="buscar($event)"></ion-searchbar>
 </ion-header>
 
 <ion-content>
 
+  <!-- El Refresher mostrará un efecto visual en el que refrescará los datos en pantalla -->
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
@@ -23,6 +28,10 @@
     </ion-refresher-content>
   </ion-refresher>
 
+  <!-- Lista en la que se mostrará los registros del array que se obtiene del servicio
+  que se especifica en el archivo 'tab1.page.ts'. Incluso se que pasará una tubería
+  con un pipe llamado 'filtro' que servirá para mostrar visualmente lo que se busca en 
+  el SearchBar -->
   <ion-list #dynamicList id="dynamicList">
     <ion-item-sliding *ngFor="let item of listadoPanel | filtro: textoaBuscar">
       <ion-item>
@@ -38,6 +47,7 @@
         </ion-label>
       </ion-item>
 
+      <!-- Aquí se implementan las diferentes funcionalidades de borrar y editar -->
       <ion-item-options side="end" (ionSwipe)="presentAlertConfirmBorrar(item.id)">
         <ion-item-option color="danger" expandable (click)="presentAlertConfirmBorrar(item.id)">
           <ion-icon name="remove-circle" style="zoom:2.0;"></ion-icon>
@@ -51,6 +61,7 @@
     </ion-item-sliding>
   </ion-list>
 
+  <!-- Botón flotante que  -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="irNueva()">
       <ion-icon name="add"></ion-icon>

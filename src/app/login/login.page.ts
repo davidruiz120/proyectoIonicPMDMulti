@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
    * Función que se conectará al servicio de autentificación para inciar sesión
    * y redirigir al usuario hacia 'tabs' en el caso de que se haya autenticado
    */
-  public async loginGoogle(){
+  public async loginGoogle(): Promise<void>{
     this.ui.presentLoading();
     const respuesta:boolean = await this.auth.loginGoogle();
     this.ui.hideLoading();
